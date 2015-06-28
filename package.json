@@ -1,0 +1,24 @@
+{
+	"name": "flybase-import",
+	"description": "npm config for Flybase Import",
+	"version": "1.1.2",
+	"dependencies": {
+		"flybase": "~1.5.5",
+		"optimist": "~0.5.2",
+		"progress": "~0.1.0"
+	},
+	"devDependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/flybaseio/flybase-import.git"
+	},
+	"keywords": [
+		"flybase",
+		"import"
+	],
+	"author": "Data McFly",
+	"license": "BSD",
+	"bin": {
+		"flybase-import": "./bin/flybase-import.js"
+	}
+}
