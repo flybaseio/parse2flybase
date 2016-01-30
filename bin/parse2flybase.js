@@ -76,6 +76,7 @@ function start(ref) {
 	var file = path.resolve(argv.json);
 	console.log('Reading ' + file + '... (may take a minute)');
 	var json = require(file);
+	var json = json.results;
 
 	var clearFirst = true, splitTopLevel = false;
 	if (argv.merge) {

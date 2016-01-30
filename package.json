@@ -1,6 +1,6 @@
 {
-	"name": "flybase-import",
-	"description": "npm config for Flybase Import",
+	"name": "parse2flybase",
+	"description": "Import Parse.com exported JSON files into Flybase",
 	"version": "1.1.2",
 	"dependencies": {
 		"flybase": "~1.5.5",
@@ -10,15 +10,16 @@
 	"devDependencies": {},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/flybaseio/flybase-import.git"
+		"url": "https://github.com/flybaseio/parse2flybase.git"
 	},
 	"keywords": [
 		"flybase",
-		"import"
+		"import",
+		"parse"
 	],
 	"author": "Data McFly",
 	"license": "BSD",
 	"bin": {
-		"flybase-import": "./bin/flybase-import.js"
+		"parse2flybase": "./bin/parse2flybase.js"
 	}
 }
