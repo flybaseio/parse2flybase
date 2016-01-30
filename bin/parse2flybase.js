@@ -91,7 +91,6 @@ function start(ref) {
 	if (clearFirst) {
 		//	drop collection..
 		ref.drop( function(obj, error) {
-//			if (error) throw(error);
 			uploadChunks(chunks);
 		});
 	} else {
@@ -125,13 +124,8 @@ function chunkInternal(ref, json, forceSplit) {
 	}
 
 	var value = json;
-	if (jsonIsObject && ('.value' in json)) {
-		size += 9; // ".value":
-		value = json['.value'];
-	}
 
 	if (value === null || typeof value !== 'object') {
-		// It's a leaf, it can't be chunked.
 		size += JSON.stringify(value).length;
 		return { chunks: null, size: size };
 	} else {
@@ -139,29 +133,8 @@ function chunkInternal(ref, json, forceSplit) {
 		var chunks = [];
 		var splitUp = false;
 		for(var key in json) {
-			if (key !== '.priority') {
-				size += key.length + 3;
-
-				var chunkRes = chunkInternal(ref.child(key), json[key]);
-				size += chunkRes.size;
-
-				if (chunkRes.chunks) {
-					for(var i = 0; i < chunkRes.chunks.length; i++) {
-						chunks.push(chunkRes.chunks[i]);
-					}
-					// One of the children had to be broken into chunks.  We have to break all of them.
-					splitUp = true;
-				} else {
-					chunks.push({ref: ref.child(key), json: json[key]});
-				}
-			}
+			size += key.length + 3;
 		}
-
-		// Add priority last since it must be added after at least one child.
-		if (priority !== null) {
-			chunks.push({ref: ref, priority: priority});
-		}
-
 		if (forceSplit || splitUp || size >= CHUNK_SIZE) {
 			return { chunks: chunks, size: size };
 		} else {
